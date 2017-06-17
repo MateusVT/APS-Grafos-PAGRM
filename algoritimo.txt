@@ -1,0 +1,67 @@
+-Individuo
+	Enquanto existir um vértice não conectado faz:
+	Escolhe um label aleatório
+	remove este label da lista de labels 
+	adiciona este label em uma lista de label utilizado
+
+	percorre todo o grafo:
+		se label da posição[linha][coluna] é igual ao label escolhido
+			adiciona o vértice da coluna na lista do vértice da linha(vértice adjacente)
+	percorre a lista de adjacentes
+		verifica se o valo ainda está na lista de vértice
+			remove o vértice da lista
+
+	ordena a lista de label usados
+
+	retorna a lista de label usados
+
+==========================
+
+#Gerar dois indivíduos e concatenar suas listas antes de chamar o crossover
+
+
+-Crossover (labelsConcatenados, grafo)
+
+	percorre a lista de labels concatenados:
+	percorre a lista de label do grafo:
+		se label[i][j] == labelsConcatenados
+			soma em um vetor de frequência na posição correta a frequência de cada rótulo
+
+	Enquanto existir um vértice não conectado faz:
+		pega a posição e o valor máximo do vetor de frequência
+		seta 0 na posição do máximo do vetor de frequência
+		pega o maior valor do labelsConcatenados
+		adiciona em uma lista de labels usados o maior valor do labelsConcatenados
+
+		percorre todo o grafo:
+			se label da posição[linha][coluna] é igual ao label escolhido
+				adiciona o vértice da coluna na lista do vértice da linha(vértice adjacente)
+
+		percorre a lista de adjacentes
+			verifica se o valo ainda está na lista de vértice
+				remove o vértice da lista
+	
+		ordena lista de labels utilizados 
+
+		retorna a lista de labels utilizados
+
+-Mutation
+	encontra um rótulo não usado na lista de utilizados e adiciona nessa lista
+	incrementa o array com a frequência dos rotulos da lista de utilizados contidos no grafo
+	para o tamanho da lista de utilizados
+		
+		cria uma lista de adjacencia pra cada rotulo do grafo
+		cria uma lista de rotulos do grafo
+		
+		remove o vertice de menor frequencia da lista de utilizados
+		percorre pela lista de utilizados e a matriz do grafo, se a coluna da matriz for igual ao rotulo da lista de utilizados, 
+		adiciona o numero da coluna a adjacencia da linha
+		
+		verifica se há um rotulo da lista de adjacencia na lista de rotulos do grafo, se sim, ele é removido da lista de rotulos do grafo
+		
+		se existirem vertices não conectados na lista de rotulos do grafo, adiciona a lista de frequencia o valor 10000, re adiciona o vertice de menor frequencia e
+		ordena a lista de utilizados
+	
+	percorre a lista de utilizados e a matriz do grafo, se a coluna da matriz for igual ao rotulo da lista de utilizados
+	
+
