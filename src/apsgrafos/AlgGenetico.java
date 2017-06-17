@@ -14,13 +14,30 @@ import java.util.List;
  * @author leotr
  */
 public class AlgGenetico {
+
+    private List<Integer> inicializaListaFrequencia(int size) {
+        List<Integer> frequencia = new ArrayList<>();
+        for (int i = 0; i < size; i++) {
+            frequencia.add(0);
+        }
+        return frequencia;
+    }
+    
+    private List<List<Integer>> inicializaSubgrafo(int size) {
+        List<List<Integer>> subgrafo = new ArrayList<>();
+        for (int i = 0; i < size - 1; i++) {
+            List a = new ArrayList();
+            subgrafo.add(i, a);
+        }
+        return subgrafo;
+    }
     
     public List<Integer> individuo(Grafo grafo) {
 
-        //lista de labels usados
+        //lista de rotulos usados
         List<Integer> rotulosUsados = new ArrayList<>();
 
-        //lista de labels do grafo
+        //lista de rotulos do grafo
         //lista de vertices de grafo
         List<Integer> rotulosGrafo = new ArrayList();
         rotulosGrafo.addAll(grafo.getRotulos());
@@ -33,7 +50,45 @@ public class AlgGenetico {
         subgrafo = inicializaSubgrafo(grafo.getQtdVertices());
 
         //Enquanto houver vertices nao conectados 
-        while (existeVerticeNConexo(verticesGrafo)) 
+        while (existeVerticeNConexo(verticesGrafo)){
+
+            //se não existi rotulos no grafo, não há como gerar um indivíduo
+            if (rotulosGrafo.size() <= 0) {
+                return null;
+            }
+            //Embaralha a lista de rotulos do grafo
+            Collections.shuffle(rotulosGrafo);
+
+            //Pega o primeiro rotulo, este rotulo é randômico
+            Integer randomLabel = rotulosGrafo.get(0);
+            rotulosGrafo.remove(randomLabel);
+            rotulosUsados.add(randomLabel);
+
+            int line = 0, column = 0;
+            //Determina o número de componentes conectados ao inserir todas as arestas com a rotulos i no subgrafo
+            for (List<Integer> linha : grafo.getMatrizAdjGrafo()) {
+                for (Integer coluna : linha) {
+                    if (coluna.equals(randomLabel)) {//se o valor do vértice for igual ao rótulo escolhido
+                        subgrafo.get(line).add(column + 1);//Add vértice da coluna em uma lista de vértices
+                    }
+                    column++;
+                }
+                line++;
+                column = 0;
+            }
+            line = 0;
+            column = 0;
+
+            //Remove da lista de vétices do grafo todos os vértices que compunham o subgrafo
+            for (List<Integer> list : subgrafo) {
+                for (Integer value : list) {
+                    if (verticesGrafo.contains(value)) {
+                        verticesGrafo.remove(value);
+                    }
+                }
+            }
+        }
+ 
 
         Collections.sort(rotulosUsados);
         return rotulosUsados;
@@ -41,17 +96,16 @@ public class AlgGenetico {
 
     public List<Integer> crossover(Grafo grafo, List<Integer> s) {
 
-        //Inicailiza array de frequencia
         List<Integer> frequencia = new ArrayList<>();
         frequencia = inicializaListaFrequencia(s.size());
 
         int i = 0; //posição que será incrementado a frequencia
 
-        //Incrementa o array, com a frequencia dos labels 's' contidos no grafo
-        for (Integer label : s) {
-            for (List<Integer> lineOfGraph : grafo.getMatrizAdjGrafo()) {
-                for (Integer columnOfGrapf : lineOfGraph) {
-                    if (columnOfGrapf.equals(label)) {
+        //Incrementa o array, com a frequencia dos rotulos s contidos no grafo
+        for (Integer rotulo : s) {
+            for (List<Integer> linha : grafo.getMatrizAdjGrafo()) {
+                for (Integer coluna : linha) {
+                    if (coluna.equals(rotulo)) {
                         frequencia.set(i, frequencia.get(i) + 1);
                     }
                 }
@@ -59,32 +113,30 @@ public class AlgGenetico {
             i++;
         }
 
-        //Inicializa Array de int com os labels do grafo
-        List<Integer> labelsGrafo = new ArrayList();
-        labelsGrafo.addAll(grafo.getRotulos());
-        //Array de labels utilizados para construir o subgrafo
-        List<Integer> labelsUsed = new ArrayList<>();
+        List<Integer> rotulosGrafo = new ArrayList();
+        rotulosGrafo.addAll(grafo.getRotulos());
+        
+        List<Integer> rotulosSubGrafo = new ArrayList<>();
 
-        //Inicializa matriz de listas de adjacencia
         List<List<Integer>> subgrafo = new ArrayList<>();
         subgrafo = inicializaSubgrafo(grafo.getQtdVertices());
 
         int line = 0, column = 0;
 
-        //Equanto houver vertices nao conectados 
-        while (existeVerticeNConexo(labelsGrafo)) {
+        //Enquanto houver vertices nao conectados 
+        while (existeVerticeNConexo(rotulosGrafo)) {
 
             int indexMaxValor = frequencia.indexOf(Collections.max(frequencia));
             frequencia.set(indexMaxValor, 0);
             int maxValorDeS = s.get(indexMaxValor);
-            if (!labelsUsed.contains(maxValorDeS)) {
-                labelsUsed.add(maxValorDeS);
+            if (!rotulosSubGrafo.contains(maxValorDeS)) {
+                rotulosSubGrafo.add(maxValorDeS);
             }
 
-            //Determine the number of connected components when inserting all edges with label i in H
-            for (List<Integer> lineOfGraph : grafo.getMatrizAdjGrafo()) {
-                for (Integer columnOfGrapf : lineOfGraph) {
-                    if (columnOfGrapf.equals(maxValorDeS)) {
+            //Determina o número de componentes conectados ao inserir todas as arestas com a rotulos i no subgrafo
+            for (List<Integer> linha : grafo.getMatrizAdjGrafo()) {
+                for (Integer coluna : linha) {
+                    if (coluna.equals(maxValorDeS)) {
                         subgrafo.get(line).add(column + 1);//Add vértice da coluna em uma lista de vértices
                     }
                     column++;
@@ -98,17 +150,17 @@ public class AlgGenetico {
             //Remove da lista de vétices do grafo todos os vértices que compunham o subgrafo
             for (List<Integer> list : subgrafo) {
                 for (Integer value : list) {
-                    if (labelsGrafo.contains(value)) {
-                        labelsGrafo.remove(value);
+                    if (rotulosGrafo.contains(value)) {
+                        rotulosGrafo.remove(value);
                     }
                 }
             }
-        }//Ao fim deste laço temos o número mínimo de labels utilizando apenas dois individuos do grafo
-        // e aplicando a união dos conjuntos de labels neste método de crossover.
+        }//Ao fim deste laço temos o número mínimo de rotulos utilizando apenas dois individuos do grafo
+        // e aplicando a união dos conjuntos de rotulos neste método de crossover.
 
-        Collections.sort(labelsUsed);
+        Collections.sort(rotulosSubGrafo);
 
-        return labelsUsed;
+        return rotulosSubGrafo;
     }
 
     public List<Integer> mutation(Grafo grafo, List<Integer> s) {
@@ -121,9 +173,9 @@ public class AlgGenetico {
         //Encontre um rótulo não utilizado em 's' e adicione em s
         while (true) {
             Collections.shuffle(rotulosNaoUtilizados);
-            Integer randomLabel = rotulosNaoUtilizados.get(0);
-            if (!s.contains(randomLabel)) {
-                s.add(randomLabel);
+            Integer rotuloRandom = rotulosNaoUtilizados.get(0);
+            if (!s.contains(rotuloRandom)) {
+                s.add(rotuloRandom);
                 Collections.sort(s);
                 break;
             } else {
@@ -131,17 +183,17 @@ public class AlgGenetico {
             }
         }
 
-        //Inicializa o array de frequencia de labels
+        //Inicializa o array de frequencia de rotulos
         List<Integer> frequencia = new ArrayList<>();
         frequencia = inicializaListaFrequencia(s.size());
 
         int i = 0; //posição que será incrementado a frequencia
 
-        //Incrementa o array, com a frequencia dos labels 's' contidos no grafo
-        for (Integer label : s) {
-            for (List<Integer> lineOfGraph : grafo.getMatrizAdjGrafo()) {
-                for (Integer columnOfGrapf : lineOfGraph) {
-                    if (columnOfGrapf.equals(label)) {
+        //Incrementa o array, com a frequencia dos rotulos 's' contidos no grafo
+        for (Integer rotulo : s) {
+            for (List<Integer> linha : grafo.getMatrizAdjGrafo()) {
+                for (Integer coluna : linha) {
+                    if (coluna.equals(rotulo)) {
                         frequencia.set(i, frequencia.get(i) + 1);
                     }
                 }
@@ -151,20 +203,20 @@ public class AlgGenetico {
 
         int column = 0;
         int line = 0;
-        int tamanhoDeS = s.size() - 1;
-        for (int x = 0; x < tamanhoDeS; x++) {
+        int tamanhoS = s.size() - 1;
+        for (int x = 0; x < tamanhoS; x++) {
 
             //Inicializa matriz de listas de adjacencia
-            List<List<Integer>> adjacencyList = new ArrayList<>();
+            List<List<Integer>> listaAdjacencia = new ArrayList<>();
             for (i = 0; i < grafo.getQtdVertices()- 1; i++) {
                 List a = new ArrayList();
-                adjacencyList.add(i, a);
+                listaAdjacencia.add(i, a);
             }
 
-            //Inicializa a lista de labels do grafo
-            List<Integer> listLabel = new ArrayList<>();
+            //Inicializa a lista de rotulos do grafo
+            List<Integer> listaRotulos = new ArrayList<>();
             for (int k = 1; k < grafo.getQtdVertices(); k++) {
-                listLabel.add(k);
+                listaRotulos.add(k);
             }
 
             int indexMinValor = frequencia.indexOf(Collections.min(frequencia));
@@ -172,11 +224,11 @@ public class AlgGenetico {
             frequencia.remove(indexMinValor);
             s.remove(indexMinValor);
 
-            for (Integer label : s) {
-                for (List<Integer> lineOfGraph : grafo.getMatrizAdjGrafo()) {
-                    for (Integer columnOfGrapf : lineOfGraph) {
-                        if (columnOfGrapf.equals(label)) {
-                            adjacencyList.get(line).add(column + 1);//Add vértice da coluna em uma lista de vértices
+            for (Integer rotulo : s) {
+                for (List<Integer> linha : grafo.getMatrizAdjGrafo()) {
+                    for (Integer coluna : linha) {
+                        if (coluna.equals(rotulo)) {
+                            listaAdjacencia.get(line).add(column + 1);//Add vértice da coluna em uma lista de vértices
                         }
                         column++;
                     }
@@ -187,14 +239,14 @@ public class AlgGenetico {
                 column = 0;
             }
 
-            for (List<Integer> list : adjacencyList) {
+            for (List<Integer> list : listaAdjacencia) {
                 for (Integer value : list) {
-                    if (listLabel.contains(value)) {
-                        listLabel.remove(value);
+                    if (listaRotulos.contains(value)) {
+                        listaRotulos.remove(value);
                     }
                 }
             }
-            if (existeVerticeNConexo(listLabel)) {
+            if (existeVerticeNConexo(listaRotulos)) {
                 frequencia.add(10000);
                 s.add(verticeRemovido);
                 Collections.sort(s);
@@ -207,10 +259,10 @@ public class AlgGenetico {
         line = 0;
         column = 0;
 
-        for (Integer label : s) {
-            for (List<Integer> lineOfGraph : grafo.getMatrizAdjGrafo()) {
-                for (Integer columnOfGrapf : lineOfGraph) {
-                    if (columnOfGrapf.equals(label)) {
+        for (Integer rotulo : s) {
+            for (List<Integer> linha : grafo.getMatrizAdjGrafo()) {
+                for (Integer coluna : linha) {
+                    if (coluna.equals(rotulo)) {
                         subgrafo.get(line).add(column + 1);//Add vértice da coluna em uma lista de vértices
                     }
                     column++;
@@ -222,25 +274,25 @@ public class AlgGenetico {
             column = 0;
         }
 
-        for (List<Integer> list : subgrafo) {
-            for (Integer integer : list) {
+        for (List<Integer> lista : subgrafo) {
+            for (Integer integer : lista) {
                 integer = grafo.getQtdVertices()- integer;
             }
         }
 
-        List<List<Integer>> newAdjacencyList = new ArrayList<>();
-        newAdjacencyList = inicializaSubgrafo(grafo.getQtdVertices());
+        List<List<Integer>> novaListaAdjacencia = new ArrayList<>();
+        novaListaAdjacencia = inicializaSubgrafo(grafo.getQtdVertices());
 
-        List<Integer> labelsUsados = new ArrayList<>();
-        labelsUsados.addAll(grafo.getRotulos());
+        List<Integer> rotulosUsados = new ArrayList<>();
+        rotulosUsados.addAll(grafo.getRotulos());
 
         for (List<Integer> list : subgrafo) {
             for (Integer integer : list) {
-                for (int j = 0; j < labelsUsados.size(); j++) {
-                    Integer vertice = labelsUsados.get(j);
+                for (int j = 0; j < rotulosUsados.size(); j++) {
+                    Integer vertice = rotulosUsados.get(j);
                     if (integer.equals(vertice)) {
-                        labelsUsados.remove(vertice);
-                        newAdjacencyList.get(line).add(integer);
+                        rotulosUsados.remove(vertice);
+                        novaListaAdjacencia.get(line).add(integer);
                     }
                 }
             }
@@ -253,27 +305,11 @@ public class AlgGenetico {
         return s;
     }
 
-    public boolean existeVerticeNConexo(List<Integer> labelList) {
-        if (labelList.size() > 0) {
+    public boolean existeVerticeNConexo(List<Integer> rotuloList) {
+        if (rotuloList.size() > 0) {
             return true;
         }
         return false;
     }
 
-    private List<List<Integer>> inicializaSubgrafo(int size) {
-        List<List<Integer>> subgrafo = new ArrayList<>();
-        for (int i = 0; i < size - 1; i++) {
-            List a = new ArrayList();
-            subgrafo.add(i, a);
-        }
-        return subgrafo;
-    }
-
-    private List<Integer> inicializaListaFrequencia(int size) {
-        List<Integer> frequencia = new ArrayList<>();
-        for (int i = 0; i < size; i++) {
-            frequencia.add(0);
-        }
-        return frequencia;
-    }
 }
