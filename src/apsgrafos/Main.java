@@ -21,32 +21,56 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
-        Arquivo fr = new Arquivo();
-        List<Grafo> grafos = fr.criaGrafos("C:/Users/leotr/Documents/BCC/7semestre/Grafos/APS Grafos Aux/APS/APS.Teoria.dos.Grafos.2017.1/instancias/GROUP 1/HDGraph20_20.txt");
-        List<Integer> quantidadeRotulos = new ArrayList<>();
-        List<Float> tempoGrafo = new ArrayList<>();
-        List<List<Integer>> aux = new ArrayList<>();
+        
+        Arquivo arquivo = new Arquivo();
+        ArrayList<String> diretorios = arquivo.leitor("instancias.txt");
+        for (int k = 0; k < diretorios.size(); k++) {
 
-        for (Grafo grafo : grafos) {
-            long tempoInicial = System.currentTimeMillis();
-            grafo.constroiAdjacencia();
-            long tempoFinal = System.currentTimeMillis();
-            float tempo = (tempoFinal - tempoInicial);
-            tempoGrafo.add(tempo);
+            int i = 1;
+            List<Float> listaDeTemposDosGrafos = new ArrayList<>();
+            List<Integer> quantidadeRotulos = new ArrayList<>();
+            ArrayList<ArrayList<Rotulo>> rotulosMin = new ArrayList<>();
+
+            Arquivo instancias = new Arquivo();
+            ArrayList<Grafo> grafos = instancias.carregaListas(instancias.carregaMatrizes(diretorios.get(k)));
+
+            System.out.println(instancias.getNome());
+
+            for (Grafo grafo : grafos) {
+                long tempoInicial = System.currentTimeMillis();
+                System.out.println("Grafo: " + i);
+                MVCA mvca = new MVCA();
+                mvca.rotulos(grafo);
+                quantidadeRotulos.add(mvca.getRotulosMin().size());
+                rotulosMin.add(mvca.getRotulosMin());
+                long tempoFinal = System.currentTimeMillis();
+                float tempo = (tempoFinal - tempoInicial);
+                listaDeTemposDosGrafos.add(tempo);
+                i++;
+            }
+
+            float tempoTotal = 0;
+            float tempoMedio = 0;
+            float mediaRotulos = 0;
+
+            for (int j = 0; j < listaDeTemposDosGrafos.size(); j++) {
+                tempoTotal += listaDeTemposDosGrafos.get(j);
+            }
+
+            for (int j = 0; j < quantidadeRotulos.size(); j++) {
+                mediaRotulos += quantidadeRotulos.get(j);
+            }
+
+            tempoMedio = tempoTotal / grafos.size();
+            mediaRotulos = mediaRotulos / grafos.size();
+
+            System.out.println("Tempo Total: " + tempoTotal + " ms");
+            System.out.println("Tempo Médio: " + tempoMedio + " ms");
+            System.out.println("Média de rótulos: " + mediaRotulos);
+
+            instancias.gravador(rotulosMin, mediaRotulos, tempoTotal, tempoMedio);
+            System.out.println("---------------------");
+            System.out.println("");
         }
-        float somaDeRotulos = 0;
-        float tempoTotal = 0;
-        for (int i = 0; i < quantidadeRotulos.size(); i++) {
-            somaDeRotulos += quantidadeRotulos.get(i);
-            tempoTotal += tempoGrafo.get(i);
-        }
-        tempoTotal = tempoTotal / tempoGrafo.size();
-        System.out.println("Media de Rotulos: " + somaDeRotulos / quantidadeRotulos.size());
-
-        System.out.println("Tempo Médio: " + tempoTotal + " ms");
-        fr.gravar(aux, (somaDeRotulos / quantidadeRotulos.size()), (tempoTotal / tempoGrafo.size()));
-
     }
-
 }

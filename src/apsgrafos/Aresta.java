@@ -10,28 +10,42 @@ package apsgrafos;
  * @author leotr
  */
 public class Aresta {
-    private int destino;
-    private int peso;
 
-    public Aresta(int destino, int peso) {
-        this.destino = destino;
-        this.peso = peso;
+    private Vertice d;
+    private Vertice o;
+    private Integer p;
+
+    public Aresta(Vertice destino) {
+        this.d = destino;
     }
 
-    public int getDestino() {
-        return destino;
+    public Aresta(Vertice destino, Integer peso) {
+        this.d = destino;
+        this.p = peso;
     }
 
-    public void setDestino(int destino) {
-        this.destino = destino;
+    public Vertice getD() {
+        return d;
     }
 
-    public int getPeso() {
-        return peso;
+    public void setD(Vertice d) {
+        this.d = d;
     }
 
-    public void setPeso(int peso) {
-        this.peso = peso;
+    public Vertice getO() {
+        return o;
     }
-    
+
+    public void setO(Vertice o) {
+        this.o = o;
+    }
+
+    public Integer getP() {
+        return p;
+    }
+
+    public void setP(Integer p) {
+        this.p = p;
+    }
+
 }
