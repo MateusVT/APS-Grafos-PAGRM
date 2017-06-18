@@ -1,13 +1,3 @@
-Mutation: [6 10 11 15 19 ]
-Mutation: [1 3 6 12 14 16 ]
-Mutation: [1 2 8 15 19 ]
-Mutation: [3 6 7 15 16 17 18 19 ]
-Mutation: [11 13 14 15 16 17 ]
-Mutation: [4 7 12 13 16 17 18 19 ]
-Mutation: [5 9 10 13 14 17 ]
-Mutation: [6 9 12 15 17 19 ]
-Mutation: [5 7 10 11 12 13 14 16 ]
-Mutation: [5 10 13 15 17 ]
 
-Média de Rótulos: 6.3
-Tempo Médio: 0.53000003
+Média de Rótulos: NaN
+Tempo Médio: NaN
