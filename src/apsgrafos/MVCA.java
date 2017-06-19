@@ -42,12 +42,13 @@ public class MVCA {
                 preencheGrafoArvore(rotuloAux, grafoArvore);//Preenche o grafo sem arestas com o rótulo escolhido, enquanto o grafo não estiver totalmente conexo
 
             }
-            
+
 //            grafoArvore.printaListaAdj();//Printa lista adjacência antes de remover os ciclos
 //            System.out.println(grafoArvore.isCiclico());
             grafoArvore.removeCiclo();//Implementar esse método e caso verificar se nenhum rótulo move com a remoçao dos ciclos.
 //            grafoArvore.printaListaAdj();//Printa a lista depois de remover o ciclo, ou seja a arvore geradora em si.
-//
+            atualizaRotulosMinimos(grafoArvore);
+
             System.out.print("Rótulos geradores minimos: ");
 
             for (int i = 0; i < rotulosMinimos.size(); i++) {
@@ -63,6 +64,40 @@ public class MVCA {
             rotulosMinimos.add(rotuloAux);
             System.out.println("O grafo possui vértices inalcaçavéis portanto não é possível encontrar uma solução.");
 
+        }
+
+    }
+
+    public void atualizaRotulosMinimos(Grafo grafoArvore) {
+
+        boolean verificacao = true;
+        ArrayList<Rotulo> rotulosRemovidos = new ArrayList<>();
+
+        for (int i = 0; i < rotulosMinimos.size(); i++) {
+
+            for (Vertice vertice : grafoArvore.getListaAdjacencia().keySet()) {
+
+                for (Aresta aresta : grafoArvore.getListaAdjacencia().get(vertice)) {
+
+                    if (aresta.getPeso().equals(rotulosMinimos.get(i).getId())) {
+                        verificacao = false;
+                    }
+                }
+
+            }
+            if (verificacao) {
+
+                rotulosRemovidos.add(rotulosMinimos.get(i));
+
+            }
+        }
+
+        if (rotulosRemovidos.size() > 0) {
+            System.out.println("Removeu algum rótulo!");
+        }
+
+        for (int i = 0; i < rotulosRemovidos.size(); i++) {
+            rotulosMinimos.remove(rotulosRemovidos.get(i));
         }
 
     }

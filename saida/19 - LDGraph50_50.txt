@@ -1,0 +1,38 @@
+Total de grafos no arquivo: 10
+
+Grafo: 1
+Rótulos geradores: [37][32][34][4][1][44][14][49][12]
+
+Grafo: 2
+Rótulos geradores: [28][27][23][46][48][13][4][3][18]
+
+Grafo: 3
+Rótulos geradores: [6][25][21][46][4][44][31][17][30][45]
+
+Grafo: 4
+Rótulos geradores: [24][32][9][2][46][27][38][35][6][30][21]
+
+Grafo: 5
+Rótulos geradores: [0][13][49][22][21][11][39][29][1][38]
+
+Grafo: 6
+Rótulos geradores: [1][34][16][30][31][39][22][47][23][19][15]
+
+Grafo: 7
+Rótulos geradores: [10][12][16][26][17][1][40][7][44][39][42][6][27][31]
+
+Grafo: 8
+Rótulos geradores: [45][14][4][44][35][22][8][23][28]
+
+Grafo: 9
+Rótulos geradores: 
+O grafo possui vértices inalcaçavéis portanto não é possível encontrar uma solução.
+
+Grafo: 10
+Rótulos geradores: [15][17][41][36][12][7][4][30][45][24][39]
+
+
+Média de Rótulos: 9.4
+Tempo Total: 20.0 ms
+Tempo Médio: 2.2222223 ms
+

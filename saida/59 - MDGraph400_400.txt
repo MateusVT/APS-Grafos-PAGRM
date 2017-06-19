@@ -1,0 +1,37 @@
+Total de grafos no arquivo: 10
+
+Grafo: 1
+Rótulos geradores: [252][301][241][235][337][361][124][24][188][216][8][1][346]
+
+Grafo: 2
+Rótulos geradores: [222][19][121][199][61][201]
+
+Grafo: 3
+Rótulos geradores: [36][202][363][207][7][69][213]
+
+Grafo: 4
+Rótulos geradores: [25][122][265][253][155][83][156][109]
+
+Grafo: 5
+Rótulos geradores: [26][268][29][210][334][110][341]
+
+Grafo: 6
+Rótulos geradores: [302][267][282][395][200][394][119][339][253][43][177][140]
+
+Grafo: 7
+Rótulos geradores: [300][336][26][101][252][396][0][153]
+
+Grafo: 8
+Rótulos geradores: [209][25][226][273][307][230][80][161]
+
+Grafo: 9
+Rótulos geradores: [317][27][50][316][222][32][199][81]
+
+Grafo: 10
+Rótulos geradores: [3][391][151][241][365][225][75]
+
+
+Média de Rótulos: 8.4
+Tempo Total: 17868.0 ms
+Tempo Médio: 1786.8 ms
+

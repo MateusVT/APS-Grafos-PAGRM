@@ -1,0 +1,37 @@
+Total de grafos no arquivo: 10
+
+Grafo: 1
+Rótulos geradores: [32][42]
+
+Grafo: 2
+Rótulos geradores: [38][106][37]
+
+Grafo: 3
+Rótulos geradores: [19][57]
+
+Grafo: 4
+Rótulos geradores: [58][6]
+
+Grafo: 5
+Rótulos geradores: [33][25]
+
+Grafo: 6
+Rótulos geradores: [59][106]
+
+Grafo: 7
+Rótulos geradores: [101][103]
+
+Grafo: 8
+Rótulos geradores: [0][90]
+
+Grafo: 9
+Rótulos geradores: [50][24]
+
+Grafo: 10
+Rótulos geradores: [48][93][55]
+
+
+Média de Rótulos: 2.2
+Tempo Total: 55254.0 ms
+Tempo Médio: 5525.4 ms
+

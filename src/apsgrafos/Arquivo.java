@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -18,7 +19,6 @@ import java.util.logging.Logger;
 public class Arquivo {
 
     private String nome;
-
     public Arquivo() {
     }
 
@@ -51,8 +51,11 @@ public class Arquivo {
         return texto;
     }
 
-    public void gravador(ArrayList<ArrayList<Rotulo>> rotulosMinimos, float mediaRotulos, float tempoTotal, float tempoMedio) {
-        File file = new File("Saida/" + getNome());
+    public void gravador(ArrayList<ArrayList<Rotulo>> rotulosMinimos, float mediaRotulos, float tempoTotal, float tempoMedio, int contador) {
+        Random randomize = new Random();
+        int id = randomize.nextInt(100);
+        
+        File file = new File("Saida/" + contador +" - " + getNome());
 
         try {
             FileWriter writer = new FileWriter(file);
@@ -89,6 +92,8 @@ public class Arquivo {
         } catch (IOException ex) {
             Logger.getLogger(Arquivo.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+        contador++;
 
     }
 

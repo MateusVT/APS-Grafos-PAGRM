@@ -6,12 +6,10 @@
 package apsgrafos;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Random;
 
 /**
  *
@@ -72,9 +70,13 @@ public class Grafo {
     }
 
     public void removeCiclo() {
+
         BuscaProfundidade busca = new BuscaProfundidade();
+
         while (isCiclico()) {
+
             setCiclico(false);
+
             for (Vertice u : getListaAdjacencia().keySet()) {
                 u.setCor("Branco");
                 u.setPi(null);
@@ -83,22 +85,24 @@ public class Grafo {
 
             for (Vertice u : getListaAdjacencia().keySet()) {
                 if (u.getCor().equals("Branco")) {
-                    busca.BuscaProfundidadeRemoveCiclo(this, u,u.getId());
+                    busca.BuscaProfundidadeRemoveCiclo(this, u, u.getId());
                 }
             }
 
-            List<Aresta> la = new ArrayList<>();
+            List<Aresta> listaArestas = new ArrayList<>();
+
             for (Vertice u : getListaAdjacencia().keySet()) {
                 for (Aresta a : getListaAdjacencia().get(u)) {
                     if (a.isEmCiclo()) {
                         a.setOrigem(u);
-                        la.add(a);
+                        listaArestas.add(a);
                     }
                 }
             }
-            if (la.size() > 0) {
-                removeAresta(la.get(0).getOrigem(), la.get(0).getDestino());
-                removeAresta(la.get(0).getDestino(), la.get(0).getOrigem());
+
+            if (listaArestas.size() > 0) {
+                removeAresta(listaArestas.get(0).getOrigem(), listaArestas.get(0).getDestino());
+                removeAresta(listaArestas.get(0).getDestino(), listaArestas.get(0).getOrigem());
             }
         }
     }

@@ -22,7 +22,7 @@ public class Main {
         ArrayList<String> diretorios = arquivo.leitor("diretorios.txt");//Arquivo que contém o nome dos diretórios das instancias a serem testadas
 
         for (int k = 0; k < diretorios.size(); k++) {//Itera os diretorios
-
+            
             int i = 1;//Auxiliar para exibir o grafo sendo processado
             List<Float> listaDeTemposDosGrafos = new ArrayList<>();//Armazena os tempos de execução de cada grafo do arquivo
             List<Integer> quantidadeRotulos = new ArrayList<>();//Armazena a quantidade de rotulos utilizada na solução de cada grafo do arquivo
@@ -81,7 +81,7 @@ public class Main {
             System.out.println("Tempo Médio: " + tempoMedio + " ms");
             System.out.println("Média de rótulos: " + mediaRotulos);
 
-            instancias.gravador(rotulosMin, mediaRotulos, tempoTotal, tempoMedio);//Grava na pasta "saida" os dados coletados
+            instancias.gravador(rotulosMin, mediaRotulos, tempoTotal, tempoMedio, k);//Grava na pasta "saida" os dados coletados
             System.out.println("----------------------------------");
             System.out.println("");
         }

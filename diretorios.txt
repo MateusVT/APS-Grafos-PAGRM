@@ -2,6 +2,7 @@ instancias/ExemploArtigoReferencia.txt
 instancias/GROUP 1/HDGraph20_20.txt
 instancias/GROUP 1/HDGraph30_30.txt
 instancias/GROUP 1/HDGraph40_40.txt
+instancias/GROUP 1/HDGraph50_50.txt
 instancias/GROUP 1/LDGraph20_20.txt
 instancias/GROUP 1/LDGraph30_30.txt
 instancias/GROUP 1/LDGraph40_40.txt
@@ -65,7 +66,7 @@ instancias/Group 2 with n=500/HDGraph500_625.txt
 instancias/Group 2 with n=500/LDGraph500_125.txt
 instancias/Group 2 with n=500/LDGraph500_250.txt
 instancias/Group 2 with n=500/LDGraph500_500.txt
-instancias/Group 2 with n=500/LDGraph500_620.txt
+instancias/Group 2 with n=500/LDGraph500_625.txt
 instancias/Group 2 with n=500/MDGraph500_125.txt
 instancias/Group 2 with n=500/MDGraph500_250.txt
 instancias/Group 2 with n=500/MDGraph500_500.txt
