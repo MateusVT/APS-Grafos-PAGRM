@@ -1,1 +1,1 @@
-instancias/ExemploArtigoReferencia.txt
+instancias/Group 2 with n=400/LDGraph400_100.txt

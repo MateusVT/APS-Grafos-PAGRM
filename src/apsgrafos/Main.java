@@ -18,8 +18,8 @@ public class Main {
     public static void main(String[] args) {
 
         Arquivo arquivo = new Arquivo();
-        ArrayList<String> diretorios = arquivo.leitor("instancias.txt");//Testes menores Insira os diretorios que você quer testar aqui
-//        ArrayList<String> diretorios = arquivo.leitor("diretorios.txt");//Arquivo que contém o nome dos diretórios das instancias a serem testadas
+//        ArrayList<String> diretorios = arquivo.leitor("instancias.txt");//Testes menores Insira os diretorios que você quer testar aqui
+        ArrayList<String> diretorios = arquivo.leitor("diretorios.txt");//Arquivo que contém o nome dos diretórios das instancias a serem testadas
 
         for (int k = 0; k < diretorios.size(); k++) {//Itera os diretorios
 
@@ -57,7 +57,7 @@ public class Main {
             int grafosDesconexos = 0;
 
             NumberFormat formatter = NumberFormat.getInstance(Locale.US);
-            formatter.setMaximumFractionDigits(2);
+            formatter.setMaximumFractionDigits(5);
             formatter.setRoundingMode(RoundingMode.HALF_UP);
 
             for (int j = 0; j < listaDeTemposDosGrafos.size(); j++) {//Calcula o tempo total
@@ -75,13 +75,13 @@ public class Main {
 
             tempoMedio = tempoTotal / (grafos.size() - grafosDesconexos);//Calcula o tempo médio para solução de cada grafo desconsiderando os grafos que não possuem solução
             mediaRotulos = mediaRotulos / grafos.size();//Calcula a média de rótulos utilizada nas soluções
-            Float tempoMedioArredondado = new Float(formatter.format(tempoMedio));
+//            Float tempoMedioArredondado = new Float(formatter.format(tempoMedio));
 
             System.out.println("Tempo Total: " + tempoTotal + " ms");
-            System.out.println("Tempo Médio: " + tempoMedioArredondado + " ms");
+            System.out.println("Tempo Médio: " + tempoMedio + " ms");
             System.out.println("Média de rótulos: " + mediaRotulos);
 
-            instancias.gravador(rotulosMin, mediaRotulos, tempoTotal, tempoMedioArredondado);//Grava na pasta "saida" os dados coletados
+            instancias.gravador(rotulosMin, mediaRotulos, tempoTotal, tempoMedio);//Grava na pasta "saida" os dados coletados
             System.out.println("----------------------------------");
             System.out.println("");
         }

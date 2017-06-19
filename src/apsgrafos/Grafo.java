@@ -6,10 +6,12 @@
 package apsgrafos;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Random;
 
 /**
  *
@@ -71,18 +73,34 @@ public class Grafo {
 
     public void removeCiclo() {
         BuscaProfundidade busca = new BuscaProfundidade();
-        if (this.ciclico) {
-            for (Vertice vertice : this.getListaAdjacencia().keySet()) {
+        while (isCiclico()) {
+            setCiclico(false);
+            for (Vertice u : getListaAdjacencia().keySet()) {
+                u.setCor("Branco");
+                u.setPi(null);
+                setTempo(0);
+            }
 
-                for (Aresta aresta : this.getListaAdjacencia().get(vertice)) {
-                    if (vertice.getCor().equals("Cinza")) {
+            for (Vertice u : getListaAdjacencia().keySet()) {
+                if (u.getCor().equals("Branco")) {
+                    busca.BuscaProfundidadeRemoveCiclo(this, u,u.getId());
+                }
+            }
 
+            List<Aresta> la = new ArrayList<>();
+            for (Vertice u : getListaAdjacencia().keySet()) {
+                for (Aresta a : getListaAdjacencia().get(u)) {
+                    if (a.isEmCiclo()) {
+                        a.setOrigem(u);
+                        la.add(a);
                     }
                 }
-
+            }
+            if (la.size() > 0) {
+                removeAresta(la.get(0).getOrigem(), la.get(0).getDestino());
+                removeAresta(la.get(0).getDestino(), la.get(0).getOrigem());
             }
         }
-
     }
 
     public boolean existeAdjascencia(Vertice origem, Vertice destino) {
@@ -188,5 +206,4 @@ public class Grafo {
     public void setIsTotalmenteConexo(Integer isTotalmenteConexo) {
         this.isTotalmenteConexo = isTotalmenteConexo;
     }
-
 }

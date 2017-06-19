@@ -9,7 +9,8 @@ public class Aresta {
     private Vertice destino;
     private Vertice origem;
     private Integer peso;
-
+    private boolean emCiclo = false;
+    
     public Aresta(Vertice destino) {
         this.destino = destino;
     }
@@ -41,6 +42,14 @@ public class Aresta {
 
     public void setPeso(Integer peso) {
         this.peso = peso;
+    }
+
+    public boolean isEmCiclo() {
+        return emCiclo;
+    }
+
+    public void setEmCiclo(boolean emCiclo) {
+        this.emCiclo = emCiclo;
     }
 
 }

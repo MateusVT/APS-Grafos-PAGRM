@@ -43,9 +43,9 @@ public class MVCA {
 
             }
             
-            grafoArvore.printaListaAdj();//Printa lista adjacência antes de remover os ciclos
+//            grafoArvore.printaListaAdj();//Printa lista adjacência antes de remover os ciclos
 //            System.out.println(grafoArvore.isCiclico());
-//            grafoArvore.removeCiclo();//Implementar esse método e caso verificar se nenhum rótulo move com a remoçao dos ciclos.
+            grafoArvore.removeCiclo();//Implementar esse método e caso verificar se nenhum rótulo move com a remoçao dos ciclos.
 //            grafoArvore.printaListaAdj();//Printa a lista depois de remover o ciclo, ou seja a arvore geradora em si.
 //
             System.out.print("Rótulos geradores minimos: ");

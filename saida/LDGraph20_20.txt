@@ -37,6 +37,6 @@ Rótulos geradores: [7][2][4][8][12][13]
 
 
 Média de Rótulos: 4.7
-Tempo Total: 3.0 ms
-Tempo Médio: 0.6 ms
+Tempo Total: 16.0 ms
+Tempo Médio: 3.2 ms
 
