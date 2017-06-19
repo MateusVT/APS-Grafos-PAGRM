@@ -1,0 +1,10 @@
+Total de grafos no arquivo: 1
+
+Grafo: 1
+Rótulos geradores: [4][6][1]
+
+
+Média de Rótulos: 3.0
+Tempo Total: 5.0 ms
+Tempo Médio: 5.0 ms
+

@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package apsgrafos;
 
 import java.util.Comparator;
@@ -12,56 +7,74 @@ import java.util.Comparator;
  * @author leotr
  */
 public class BuscaProfundidade {
-    public static boolean InitProfundidade(Grafo grafo) {
-        grafo.componentesConexas = 0;
+
+    public boolean run(Grafo grafo) {
+
+        grafo.setIsTotalmenteConexo(0);
+
         for (Vertice u : grafo.getListaAdjacencia().keySet()) {
             u.setCor("Branco");
             u.setPi(null);
             grafo.setTempo(0);
         }
+        
         for (Vertice u : grafo.getListaAdjacencia().keySet()) {
+            
             if (u.getCor().equals("Branco")) {
                 BuscaProfundidade(grafo, u);
-                grafo.componentesConexas++;
+                grafo.setIsTotalmenteConexo(grafo.getIsTotalmenteConexo()+1);
             }
+            
         }
-        if(grafo.componentesConexas == 1){
+        
+        if (grafo.getIsTotalmenteConexo() == 1) {
             return true;
         }
+        
         return false;
     }
 
-    public static void BuscaProfundidade(Grafo grafo, Vertice vertice) {
-        grafo.tempo += 1;
-        vertice.setTd((Integer) grafo.tempo);
-//        System.out.println("\ndescoberto vertice: "+ vertice.id + "  cor:  "+ vertice.cor + " Tempo descoberto: " + vertice.getTempoDescoberto());
+    public void BuscaProfundidade(Grafo grafo, Vertice vertice) {
+        
+        grafo.setTempo(grafo.getTempo()+1);
+        vertice.setTempoDescoberta((Integer) grafo.getTempo());
         vertice.setCor("Cinza");
-//        System.out.println("\n sou vertice: "+ vertice.id + " me pintei cor:  "+ vertice.cor);
-        for (Aresta ar : grafo.getListaAdjacencia().get(vertice)) {
-            Vertice v = ar.getD();
-            if (v.getCor().equals("Cinza")) {
+
+        for (Aresta aresta : grafo.getListaAdjacencia().get(vertice)) {            
+            Vertice vert = aresta.getDestino();
+            
+            if (vert.getCor().equals("Cinza")) {                
                 grafo.setCiclico(true);
-            } else if (v.getCor().equals("Branco")) {
-                v.setPi(vertice);
-                BuscaProfundidade(grafo, v);
+                
+            } else if (vert.getCor().equals("Branco")) {                
+                vert.setPi(vertice);
+                BuscaProfundidade(grafo, vert);                
             }
+            
         }
 
         vertice.setCor("Preto");
-        grafo.setTempo(grafo.tempo + 1);
-        vertice.setTf(grafo.getTempo());
-//        System.out.println("\n sou vertice: "+ vertice.id + " finalizei :  "+ vertice.cor + " Tempo finalizado: "+ vertice.tf);
+        grafo.setTempo(grafo.getTempo() + 1);
+        vertice.setTempoFinal(grafo.getTempo());
+
     }
 
     class ComparadorVertices implements Comparator<Vertice> {
 
-        public int compare(Vertice v1, Vertice v2) {
-            if (v1.tf > v2.tf) {
+        public int compare(Vertice vertice1, Vertice vertice2) {
+
+            if (vertice1.getTempoFinal() > vertice2.getTempoFinal() ) {
+
                 return -1;
-            } else if (v1.tf < v2.tf) {
+
+            } else if (vertice1.getTempoFinal()  < vertice2.getTempoFinal() ) {
+
                 return +1;
+
             } else {
+
                 return 0;
+
             }
         }
     }

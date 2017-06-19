@@ -1,0 +1,72 @@
+instancias/ExemploArtigoReferencia.txt
+instancias/GROUP 1/HDGraph20_20.txt
+instancias/GROUP 1/HDGraph30_30.txt
+instancias/GROUP 1/HDGraph40_40.txt
+instancias/GROUP 1/LDGraph20_20.txt
+instancias/GROUP 1/LDGraph30_30.txt
+instancias/GROUP 1/LDGraph40_40.txt
+instancias/GROUP 1/LDGraph50_50.txt
+instancias/GROUP 1/MDGraph20_20.txt
+instancias/GROUP 1/MDGraph30_30.txt
+instancias/GROUP 1/MDGraph40_40.txt
+instancias/GROUP 1/MDGraph50_50.txt
+instancias/Group 2 with n=50/HDGraph50_12.txt
+instancias/Group 2 with n=50/HDGraph50_25.txt
+instancias/Group 2 with n=50/HDGraph50_50.txt
+instancias/Group 2 with n=50/HDGraph50_62.txt
+instancias/Group 2 with n=50/LDGraph50_12.txt
+instancias/Group 2 with n=50/LDGraph50_25.txt
+instancias/Group 2 with n=50/LDGraph50_50.txt
+instancias/Group 2 with n=50/LDGraph50_62.txt
+instancias/Group 2 with n=50/MDGraph50_12.txt
+instancias/Group 2 with n=50/MDGraph50_25.txt
+instancias/Group 2 with n=50/MDGraph50_50.txt
+instancias/Group 2 with n=50/MDGraph50_62.txt
+instancias/Group 2 with n=100/HDGraph100_25.txt
+instancias/Group 2 with n=100/HDGraph100_50.txt
+instancias/Group 2 with n=100/HDGraph100_100.txt
+instancias/Group 2 with n=100/HDGraph100_125.txt
+instancias/Group 2 with n=100/LDGraph100_25.txt
+instancias/Group 2 with n=100/LDGraph100_50.txt
+instancias/Group 2 with n=100/LDGraph100_100.txt
+instancias/Group 2 with n=100/LDGraph100_125.txt
+instancias/Group 2 with n=100/MDGraph100_25.txt
+instancias/Group 2 with n=100/MDGraph100_50.txt
+instancias/Group 2 with n=100/MDGraph100_100.txt
+instancias/Group 2 with n=100/MDGraph100_125.txt
+instancias/Group 2 with n=200/HDGraph200_50.txt
+instancias/Group 2 with n=200/HDGraph200_100.txt
+instancias/Group 2 with n=200/HDGraph200_200.txt
+instancias/Group 2 with n=200/HDGraph200_250.txt
+instancias/Group 2 with n=200/LDGraph200_50.txt
+instancias/Group 2 with n=200/LDGraph200_100.txt
+instancias/Group 2 with n=200/LDGraph200_200.txt
+instancias/Group 2 with n=200/LDGraph200_250.txt
+instancias/Group 2 with n=200/MDGraph200_50.txt
+instancias/Group 2 with n=200/MDGraph200_100.txt
+instancias/Group 2 with n=200/MDGraph200_200.txt
+instancias/Group 2 with n=200/MDGraph200_250.txt
+instancias/Group 2 with n=400/HDGraph400_100.txt
+instancias/Group 2 with n=400/HDGraph400_200.txt
+instancias/Group 2 with n=400/HDGraph400_400.txt
+instancias/Group 2 with n=400/HDGraph400_500.txt
+instancias/Group 2 with n=400/LDGraph400_100.txt
+instancias/Group 2 with n=400/LDGraph400_200.txt
+instancias/Group 2 with n=400/LDGraph400_400.txt
+instancias/Group 2 with n=400/LDGraph400_500.txt
+instancias/Group 2 with n=400/MDGraph400_100.txt
+instancias/Group 2 with n=400/MDGraph400_200.txt
+instancias/Group 2 with n=400/MDGraph400_400.txt
+instancias/Group 2 with n=400/MDGraph400_500.txt
+instancias/Group 2 with n=500/HDGraph500_125.txt
+instancias/Group 2 with n=500/HDGraph500_250.txt
+instancias/Group 2 with n=500/HDGraph500_500.txt
+instancias/Group 2 with n=500/HDGraph500_625.txt
+instancias/Group 2 with n=500/LDGraph500_120.txt
+instancias/Group 2 with n=500/LDGraph500_250.txt
+instancias/Group 2 with n=500/LDGraph500_500.txt
+instancias/Group 2 with n=500/LDGraph500_620.txt
+instancias/Group 2 with n=500/MDGraph500_125.txt
+instancias/Group 2 with n=500/MDGraph500_250.txt
+instancias/Group 2 with n=500/MDGraph500_500.txt
+instancias/Group 2 with n=500/MDGraph500_625.txt

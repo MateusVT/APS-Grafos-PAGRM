@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package apsgrafos;
 
 /**
@@ -15,10 +10,10 @@ public class Vertice {
     private String cor;
     private Vertice pi;
     private boolean visited;
-   
-    Double d;
-    Integer td;
-    Integer tf;
+
+    private Double d;
+    private Integer tempoDescoberta;
+    private Integer tempoFinal;
 
     public Vertice(String nome) {
         this.id = nome;
@@ -56,20 +51,20 @@ public class Vertice {
         this.pi = pi;
     }
 
-    public Integer getTd() {
-        return td;
+    public Integer getTempoDescoberta() {
+        return tempoDescoberta;
     }
 
-    public void setTd(Integer td) {
-        this.td = td;
+    public void setTempoDescoberta(Integer tempoDescoberta) {
+        this.tempoDescoberta = tempoDescoberta;
     }
 
-    public Integer getTf() {
-        return tf;
+    public Integer getTempoFinal() {
+        return tempoFinal;
     }
 
-    public void setTf(Integer tf) {
-        this.tf = tf;
+    public void setTempoFinal(Integer tempoFinal) {
+        this.tempoFinal = tempoFinal;
     }
 
     public boolean isVisited() {

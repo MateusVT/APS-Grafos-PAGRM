@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package apsgrafos;
 
 import java.util.ArrayList;
@@ -14,16 +9,15 @@ import java.util.ArrayList;
 public class Rotulo {
 
     private Integer id;
-    private ArrayList<Aresta> arestas;
-    
-    Integer qnt;
-    Integer numAlcancaveis;
+    private ArrayList<Aresta> arestasRepresentantes;
+    private Integer qtdFrequencia;
+    private Integer qtdVerticesAlcancaveis;
 
-    public Rotulo(Integer nome) {
-        this.id = nome;
-        this.qnt = 0;
-        this.numAlcancaveis = 0;
-        this.arestas = new ArrayList<>();
+    public Rotulo(Integer id) {
+        this.id = id;
+        this.qtdFrequencia = 0;
+        this.qtdVerticesAlcancaveis = 0;
+        this.arestasRepresentantes = new ArrayList<>();
     }
 
     public Integer getId() {
@@ -34,28 +28,28 @@ public class Rotulo {
         this.id = id;
     }
 
-    public Integer getQnt() {
-        return qnt;
+    public Integer getQtdFrequencia() {
+        return qtdFrequencia;
     }
 
-    public void setQnt(Integer qnt) {
-        this.qnt = qnt;
+    public void setQtdFrequencia(Integer qtdFrequencia) {
+        this.qtdFrequencia = qtdFrequencia;
     }
 
-    public ArrayList<Aresta> getArestas() {
-        return arestas;
+    public ArrayList<Aresta> getArestasRepresentantes() {
+        return arestasRepresentantes;
     }
 
-    public void setArestas(ArrayList<Aresta> arestas) {
-        this.arestas = arestas;
+    public void setArestasRepresentantes(ArrayList<Aresta> arestasRepresentantes) {
+        this.arestasRepresentantes = arestasRepresentantes;
     }
 
-    public Integer getNumAlcancaveis() {
-        return numAlcancaveis;
+    public Integer getQtdVerticesAlcancaveis() {
+        return qtdVerticesAlcancaveis;
     }
 
-    public void setNumAlcancaveis(Integer numAlcancaveis) {
-        this.numAlcancaveis = numAlcancaveis;
+    public void setQtdVerticesAlcancaveis(Integer qtdVerticesAlcancaveis) {
+        this.qtdVerticesAlcancaveis = qtdVerticesAlcancaveis;
     }
 
 }

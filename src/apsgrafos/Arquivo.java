@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package apsgrafos;
 
 import java.io.BufferedReader;
@@ -18,21 +13,13 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author leotr
+ * @author Torres
  */
 public class Arquivo {
 
     private String nome;
 
     public Arquivo() {
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
     }
 
     public ArrayList<String> leitor(String diretorio) {
@@ -69,21 +56,34 @@ public class Arquivo {
 
         try {
             FileWriter writer = new FileWriter(file);
+            writer.write("Total de grafos no arquivo: " + rotulosMinimos.size());
+            writer.write("\r\n");
+            writer.write("\r\n");
 
             for (int i = 0; i < rotulosMinimos.size(); i++) {
-                writer.write("\r\nGrafo: " + (i + 1));
+                writer.write("Grafo: " + (i + 1));
                 writer.write("\r\nRótulos geradores: ");
+
                 for (int j = 0; j < rotulosMinimos.get(i).size(); j++) {
-                    writer.write("[");
-                    writer.write(rotulosMinimos.get(i).get(j).getId().toString());
-                    writer.write("]");
+                    if (rotulosMinimos.get(i).get(j).getId().equals(-10)) {
+                        writer.write("\r\nO grafo possui vértices inalcaçavéis portanto não é possível encontrar uma solução.");
+
+                    } else {
+                        writer.write("[");
+                        writer.write(rotulosMinimos.get(i).get(j).getId().toString());
+                        writer.write("]");
+                    }
                 }
+                writer.write("\r\n");
                 writer.write("\r\n");
             }
 
             writer.write("\r\nMédia de Rótulos: " + mediaRotulos);
             writer.write("\r\nTempo Total: " + tempoTotal + " ms");
             writer.write("\r\nTempo Médio: " + tempoMedio + " ms");
+            writer.write("\r\n");
+            writer.write("\r\n");
+
             writer.close();
 
         } catch (IOException ex) {
@@ -92,13 +92,12 @@ public class Arquivo {
 
     }
 
-    public ArrayList<Grafo> carregaMatrizes(String arquivo) {
+    public ArrayList<Grafo> geraMatrizesAdj(String arquivo) {
 
         String[] diretorio = arquivo.split("/");
         setNome(diretorio[diretorio.length - 1]);
 
         ArrayList<Grafo> grafos = new ArrayList<Grafo>();
-
         ArrayList<String> texto = leitor(arquivo);
 
         String[] linha = texto.get(0).split(" ");
@@ -140,7 +139,7 @@ public class Arquivo {
         return grafos;
     }
 
-    public ArrayList<Grafo> carregaListas(ArrayList<Grafo> matriz) {
+    public ArrayList<Grafo> geraListasAdj(ArrayList<Grafo> matriz) {
 
         String[] diretorio = nome.split("/");
         setNome(diretorio[diretorio.length - 1]);
@@ -163,7 +162,7 @@ public class Arquivo {
 
                     if (!n.equals(-1)) {
                         Vertice destino = grafo.getVerticeGrafo(j.toString());
-                        if (!grafo.existeAdjascencia(grafo, origem, destino)) {
+                        if (!grafo.existeAdjascencia(origem, destino)) {
                             grafo.insereArestaND(origem, new Aresta(destino, n));
 
                         }
@@ -175,6 +174,14 @@ public class Arquivo {
         }
 
         return grafos;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
 }

@@ -1,3 +1,4 @@
+Total de grafos no arquivo: 10
 
 Grafo: 1
 Rótulos geradores: [10][9][0]
@@ -29,6 +30,8 @@ Rótulos geradores: [8][3]
 Grafo: 10
 Rótulos geradores: [12][15]
 
+
 Média de Rótulos: 2.6
-Tempo Total: 22.0 ms
-Tempo Médio: 2.2 ms
+Tempo Total: 15.0 ms
+Tempo Médio: 1.5 ms
+
